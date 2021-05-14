@@ -1,9 +1,12 @@
 package com.springboot.demo;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,31 +16,36 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 	
 	@Autowired
-	private ControllerService controllerService;
+	private PersonRepository personRepository;
 	
-	@RequestMapping(value="/message")
-	public String getMessage() {
-		return "hi there ";
+	@RequestMapping(value="/addPerson", method=RequestMethod.POST)
+	public void addPerson(@RequestBody Person person) {
+		
+		personRepository.save(person);
 	}
 	
-	@RequestMapping(value="/persons",method=RequestMethod.GET)
-	public List<Person> getPerson(){
-		return controllerService.getAllPerson();
+	@RequestMapping(value="/getPersons")
+	public List<Person> getPersons(){
+		List<Person> person=new ArrayList<>();
+		personRepository.findAll().forEach(person::add);
+		return person;
+		
 	}
 	
-	@RequestMapping(value="/persons/{id}")
-	public Person getPersonByid(@PathVariable int id) {
-		return controllerService.getPerson(id);
+	@RequestMapping(value="/getPerson/{id}")
+	public Person getPerson(@PathVariable int id) {
+		return personRepository.findById(id).orElse(null);
 	}
 	
-	@RequestMapping(value="/persons/update", method=RequestMethod.PUT )
+	@RequestMapping(value="/updatePerson", method=RequestMethod.POST)
 	public void updatePerson(@RequestBody Person person) {
-		controllerService.updatePerson(person);
+		personRepository.save(person);
+		
 	}
 	
-	@RequestMapping(value="/persons/delete/{id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deletePerson/{id}",method=RequestMethod.DELETE)
 	public void deletePerson(@PathVariable int id) {
-		 controllerService.deletePerson(id);
+		personRepository.deleteById(id);
 	}
 	
 

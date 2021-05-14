@@ -1,7 +1,14 @@
 package com.springboot.demo;
 
-public class Person {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+public class Person  {
 	
+	@Id 
 	private int id;
 	private String name;
 	

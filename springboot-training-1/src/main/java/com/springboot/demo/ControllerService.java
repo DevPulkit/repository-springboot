@@ -2,57 +2,36 @@ package com.springboot.demo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class ControllerService {
 	
-	 List<Person> list=new ArrayList<>();
-	 
+	private PersonRepository personRepository;
 	
-	public ControllerService() {
-		System.out.println("it is the service layer ");
-		list.add(new Person(1,"person1"));
-		list.add(new Person(2,"person2"));
-		list.add(new Person(3,"person3"));
-		
+	public List<Person> getAllPersons(){
+		List<Person> persons=new ArrayList<>();
+		personRepository.findAll().forEach(person->persons.add(person));
+		return persons;
 	}
 	
-	public List<Person> getAllPerson(){
-		return list;
+	public Person getPersonById(int id) {
+		return personRepository.findById(id).get();
 	}
 	
-	public Person getPerson(int id) {
-		
-		for(Person p: list) {
-			if(p.getId()==id) {
-				return p;
-			}
-			 
-				
-			
-		}
-		return new Person();
-		
-		
+	public void saveOrUpdate(Person person) {
+		personRepository.save(person);
 	}
-	public void savePerson(Person person) {
-		
-		this.list.add(person);
+	
+	
+	public void delete(int id) {
+		personRepository.deleteById(id);
 	}
-	public void updatePerson(Person person) {
-		
-		for(Person p:list) {
-			if(p.getId()==person.getId()) {
-				p.setName(person.getName());
-			}
-		}
-	}
-	public void deletePerson(int id) {
-		
-		list.remove(id);
-		
-	}
+	
+	
+ 
 
-}
+	}
+	
