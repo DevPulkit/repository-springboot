@@ -34,8 +34,9 @@ public class Controller {
 	
 	@RequestMapping(value="/getPerson/{id}")
 	public Person getPerson(@PathVariable int id) {
-		return personRepository.findById(id).orElse(null);
+		return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + id));
 	}
+	
 	
 	@RequestMapping(value="/updatePerson", method=RequestMethod.POST)
 	public void updatePerson(@RequestBody Person person) {
@@ -47,6 +48,14 @@ public class Controller {
 	public void deletePerson(@PathVariable int id) {
 		personRepository.deleteById(id);
 	}
+	
+	@RequestMapping(value="/greater/{id}",method=RequestMethod.GET)
+	public void greater(@PathVariable int id) {
+		System.out.println(personRepository.findByIdLessThan(id));
+		System.out.println(personRepository.findByIdGreaterThan(id));
+		
+	}
+	
 	
 
 }
