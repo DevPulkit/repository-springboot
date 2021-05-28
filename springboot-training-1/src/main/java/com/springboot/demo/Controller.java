@@ -56,6 +56,38 @@ public class Controller {
 		
 	}
 	
+//	@RequestMapping(value="/getPersonByTech/{tech}",method=RequestMethod.GET)
+//	public List<Person> techSorted(@PathVariable String tech) {
+//			return personRepository.findByTech1(tech);
+//		//return personRepository.findByTech(tech);
+//		
+//	}
+	
+//	@RequestMapping(value="/getmePersons")
+//	public List<Person> findBySortedTech() {
+//		System.out.println(personRepository.findAll());
+//		return personRepository.findAll();
+//		
+//	}
+	
+	@RequestMapping(value="/getmetech/{tech}")
+	public List<Person> findbytechnology(@PathVariable String tech) {
+		
+		return personRepository.findbyTechSorted(tech);
+		
+	}
+	
+	@RequestMapping(value="/getmename/{tech}/{name}")
+	public List<Person> findbyName(@PathVariable String tech, @PathVariable String name) {
+		
+		return personRepository.findbyName(tech, name);
+		
+	}
+	
+		
+	
+	
+	
 	
 
 }

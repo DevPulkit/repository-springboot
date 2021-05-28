@@ -11,8 +11,15 @@ public class Person  {
 	@Id 
 	private int id;
 	private String name;
+	private String tech;
 	
 	
+	public String getTech() {
+		return tech;
+	}
+	public void setTech(String tech) {
+		this.tech = tech;
+	}
 	public Person(int id, String name) {
 		super();
 		this.id = id;
@@ -35,8 +42,9 @@ public class Person  {
 	}
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + "]";
+		return "Person [id=" + id + ", name=" + name + ", tech=" + tech + "]";
 	}
+	
 	
 
 }
