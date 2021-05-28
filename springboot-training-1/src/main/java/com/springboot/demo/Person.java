@@ -1,6 +1,7 @@
 package com.springboot.demo;
 
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 

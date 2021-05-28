@@ -1,6 +1,7 @@
 package com.springboot.demo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,7 @@ public class Controller {
 		
 	}
 	
+	
 	@RequestMapping(value="/getPerson/{id}")
 	public Person getPerson(@PathVariable int id) {
 		return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + id));
@@ -56,13 +58,7 @@ public class Controller {
 		
 	}
 	
-//	@RequestMapping(value="/getPersonByTech/{tech}",method=RequestMethod.GET)
-//	public List<Person> techSorted(@PathVariable String tech) {
-//			return personRepository.findByTech1(tech);
-//		//return personRepository.findByTech(tech);
-//		
-//	}
-	
+
 //	@RequestMapping(value="/getmePersons")
 //	public List<Person> findBySortedTech() {
 //		System.out.println(personRepository.findAll());
@@ -83,6 +79,15 @@ public class Controller {
 		return personRepository.findbyName(tech, name);
 		
 	}
+	
+
+	
+//	@Query(value = "SELECT new com.springboot.demo.Information(p.name, d.surname) FROM employees p JOIN details d WHERE p.id=d.id", nativeQuery = true)
+	//@RequestMapping(value="/getbyjoin")
+//	List<Person> getByJoin(){
+//		return personRepository.getbyjoin(); 
+//		
+//	}
 	
 		
 	
