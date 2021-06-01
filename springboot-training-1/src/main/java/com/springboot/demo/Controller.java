@@ -80,6 +80,16 @@ public class Controller {
 		
 	}
 	
+//	@RequestMapping("/totalEmployees")
+//	public void getEmp() {
+//		personRepository.getTotal();
+//	}
+//	
+	@GetMapping("/total")
+	public int Gettotal() {
+		return personRepository.getTotal();
+	}
+	
 
 	
 //	@Query(value = "SELECT new com.springboot.demo.Information(p.name, d.surname) FROM employees p JOIN details d WHERE p.id=d.id", nativeQuery = true)
