@@ -1,23 +1,24 @@
 package com.springboot.demo;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Aspect
 @Component
 public class LoggingAdvice {
 	
-	Logger log=org.slf4j.LoggerFactory.getLogger(LoggingAdvice.class);
+	//Logger log=org.slf4j.LoggerFactory.getLogger(LoggingAdvice.class);
+	Logger log=LoggerFactory.getLogger(LoggingAdvice.class);
 	
 	//@Pointcut(value="execution(* com.springboot.demo .*.*(..)")
 	@Pointcut(value="execution(* com.springboot.demo.*.*(..))")
@@ -25,7 +26,7 @@ public class LoggingAdvice {
 		
 	}
 	
-	@Pointcut(value="execution(* com.springboot.demo.*.*(..))")
+	@Pointcut(value="execution(* com.springboot.demo.Controller.*(..))")
 	public void pointcutTime() {
 		
 	}
@@ -45,17 +46,17 @@ public class LoggingAdvice {
 		}
 	
 	
-	@Around("pointcutTime()")
-	 public Object trackTime(ProceedingJoinPoint pjp) throws Throwable {
-		 
-		 long startTime=System.currentTimeMillis();
-		 Object obj=pjp.proceed();
-		 long endTime=System.currentTimeMillis();
-		 log.info("Method name"+ pjp.getSignature()+" time taken to execute: "+ (endTime-startTime));
-		 return obj;
-		 
-		 
-		 
-	 }
+//	@Around("pointcutTime()")
+//	 public Object trackTime(ProceedingJoinPoint pjp) throws Throwable {
+//		 
+//		 long startTime=System.currentTimeMillis();
+//		 Object obj=pjp.proceed();
+//		 long endTime=System.currentTimeMillis();
+//		 log.info("Method name"+ pjp.getSignature()+" time taken to execute: "+ (endTime-startTime));
+//		 return obj;
+//		 
+//		 
+//		 
+//	 }
 
 }

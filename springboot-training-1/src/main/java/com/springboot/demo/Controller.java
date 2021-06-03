@@ -26,6 +26,7 @@ public class Controller {
 	}
 	
 	@RequestMapping(value="/getPersons")
+	@TrackExecutionTime
 	public List<Person> getPersons(){
 		List<Person> person=new ArrayList<>();
 		personRepository.findAll().forEach(person::add);
