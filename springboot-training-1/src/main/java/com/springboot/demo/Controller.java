@@ -19,6 +19,22 @@ public class Controller {
 	@Autowired
 	private PersonRepository personRepository;
 	
+	@RequestMapping(value="/")
+	public String welcomeAll() {
+		
+		return "Wellcome All";
+	}
+	@RequestMapping(value="/user")
+	public String welcomeUser() {
+		
+		return "Wellcome users";
+	}
+	@RequestMapping(value="/admin")
+	public String welcomAdmin() {
+		
+		return "Wellcome admins";
+	}
+	
 	@RequestMapping(value="/addPerson", method=RequestMethod.POST)
 	public void addPerson(@RequestBody Person person) {
 		

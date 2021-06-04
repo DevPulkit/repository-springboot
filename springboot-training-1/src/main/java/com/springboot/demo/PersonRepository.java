@@ -18,6 +18,7 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 
 	List<Person> findByIdLessThan(int id);
 	List<Person> findByIdGreaterThan(int id);
+	Person findByName(String name);
 	
 	@Query(value="select * from employees ",nativeQuery =true)
 	List<Person> findAll(String name);

@@ -13,8 +13,22 @@ public class Person  {
 	private int id;
 	private String name;
 	private String tech;
+	private String password;
+	private String role;
 	
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getTech() {
 		return tech;
 	}
@@ -43,7 +57,8 @@ public class Person  {
 	}
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", tech=" + tech + "]";
+		return "Person [id=" + id + ", name=" + name + ", tech=" + tech + ", password=" + password + ", role=" + role
+				+ "]";
 	}
 	
 	
